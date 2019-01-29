@@ -1,22 +1,13 @@
 import { AsyncStorage } from 'react-native';
 
-import { uniqBy } from 'lodash';
-import { delay, configureLocale, saveLocale } from '../utils';
-
 import {
   fetchAccessToken,
   fetchAuthUser,
-  fetchAuthUserOrgs,
-  fetchUserOrgs,
-  fetchStarCount,
 } from 'api';
 import {
   LOGIN,
   LOGOUT,
   GET_AUTH_USER,
-  GET_AUTH_ORGS,
-  CHANGE_LOCALE,
-  GET_AUTH_STAR_COUNT,
 } from './auth.type';
 
 export const auth = (code, state) => {
