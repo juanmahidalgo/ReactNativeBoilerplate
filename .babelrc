@@ -1,0 +1,34 @@
+{
+    "presets": [
+      "module:metro-react-native-babel-preset",
+      "@babel/flow"
+    ],
+    "retainLines": true,
+    "plugins": [
+      [
+        "module-resolver",
+        {
+          "root": [
+            "./src"
+          ],
+          "alias": {
+            "api": "api",
+            "auth": "auth",
+            "components": "components",
+            "config": "config",
+            "issue": "issue",
+            "locale": "locale",
+            "notifications": "notifications",
+            "organization": "organization",
+            "package.json": "./package.json",
+            "repository": "repository",
+            "search": "search",
+            "testData": "./__tests__/data",
+            "user": "user",
+            "utils": "src/utils"
+          }
+        }
+      ],
+      "transform-inline-environment-variables"
+    ]
+  }
