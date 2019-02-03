@@ -28,8 +28,8 @@
         "alias": {
           "api": "api",
           "auth": "auth",
-          "components": "components",
-          "config": "config",
+          "components": "src/components",
+          "config": "./src/config",
           "issue": "issue",
           "locale": "locale",
           "notifications": "notifications",
@@ -38,12 +38,13 @@
           "search": "search",
           "testData": "./__tests__/data",
           "user": "user",
-          "utils": "utils"
+          "utils": "src/utils"
         }
       }
     }
   },
   "rules": {
+    "no-tabs": "off",
     "global-require": "off",
     "import/prefer-default-export": "off",
     "jsx-a11y/anchor-has-content": "off",
@@ -177,10 +178,10 @@
             "shouldComponentUpdate",
             "componentWillUpdate",
             "componentDidUpdate",
-            "componentWillUnmount",
-          ],
-        },
-      },
-    ],
+            "componentWillUnmount"
+          ]
+        }
+      }
+    ]
   }
 }

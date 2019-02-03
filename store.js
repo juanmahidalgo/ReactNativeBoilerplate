@@ -8,7 +8,7 @@ import Reactotron from 'reactotron-react-native'; // eslint-disable-line import/
 import createLogger from 'redux-logger';
 import reduxThunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import './src/config/reactotron';
+import 'config/reactotron';
 import { rootReducer } from './reducer';
 
 const encryptor = createEncryptor({

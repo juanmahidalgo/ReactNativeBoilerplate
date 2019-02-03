@@ -8,24 +8,23 @@
       [
         "module-resolver",
         {
-          "root": [
-            "./src"
-          ],
+          "root": [ "./src" ],
+          "cwd": "babelrc",
           "alias": {
-            "api": "api",
-            "auth": "auth",
-            "components": "components",
-            "config": "config",
-            "issue": "issue",
-            "locale": "locale",
-            "notifications": "notifications",
-            "organization": "organization",
+            "api": "./src/api",
+            "auth": "./src/auth",
+            "components": "./src/components",
+            "config": "./src/config",
+            "issue": "./src/issue",
+            "locale": "./src/locale",
+            "notifications": "./src/notifications",
+            "organization": "./src/organization",
             "package.json": "./package.json",
-            "repository": "repository",
-            "search": "search",
+            "repository": "./src/repository",
+            "search": "./src/search",
             "testData": "./__tests__/data",
-            "user": "user",
-            "utils": "src/utils"
+            "user": "./src/user",
+            "utils": "./src/utils"
           }
         }
       ],

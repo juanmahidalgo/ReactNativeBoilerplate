@@ -1,6 +1,6 @@
 // @flow
 
-import { Schema } from 'normalizr';
+// import { Schema } from 'normalizr';
 import { merge } from 'lodash';
 import { version } from 'package.json';
 import { Platform } from 'react-native';
@@ -24,7 +24,7 @@ type UpdateEntity = {
 };
 
 type BaseCallParameters = {
-  schema: Schema,
+  // schema: Schema,
   params: SpecialParameters,
   fetchParameters?: FetchParameters,
   normalizrKey?: string,

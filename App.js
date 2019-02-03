@@ -7,11 +7,11 @@
  * @lint-ignore-every XPLATJSCOPYRIGHT1
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from 'react';
+import { Platform, StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
-// import { configureStore, persistor } from './store';
 import { configureStore, persistor } from './store';
+import { MainTabNavigator } from './routes';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -25,11 +25,13 @@ export default class App extends Component<Props> {
   render() {
     return (
       <Provider store={configureStore}>
-        <View style={styles.container}>
-          <Text style={styles.welcome}>Welcome to React Native!</Text>
-          <Text style={styles.instructions}>To get started, edit App.js</Text>
-          <Text style={styles.instructions}>{instructions}</Text>
-        </View>
+        <MainTabNavigator persistor={persistor}>
+          <View style={styles.container}>
+            <Text style={styles.welcome}>Welcome to React Native!</Text>
+            <Text style={styles.instructions}>To get started, edit App.js</Text>
+            <Text style={styles.instructions}>{instructions}</Text>
+          </View>
+        </MainTabNavigator>
       </Provider>
     );
   }
