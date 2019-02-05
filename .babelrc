@@ -9,12 +9,12 @@
         "module-resolver",
         {
           "root": [ "./src" ],
-          "cwd": "babelrc",
+          "cwd": "package.json",
           "alias": {
+            "config": "./src/config",
             "api": "./src/api",
             "auth": "./src/auth",
             "components": "./src/components",
-            "config": "./src/config",
             "issue": "./src/issue",
             "locale": "./src/locale",
             "notifications": "./src/notifications",

@@ -9,12 +9,13 @@ import {
 } from 'react-navigation';
 // import { Icon } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { LoginScreen } from './src/auth/screens';
 
 // import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 
 // import { NotificationIcon } from 'components';
-import { colors } from 'config';
-import { t } from 'utils';
+// import { colors } from 'config';
+// import { t } from 'utils';
 
 // Auth
 import {
@@ -26,7 +27,7 @@ import {
 	// PrivacyPolicyScreen,
 	// UserOptionsScreen,
 	// LanguageSettingsScreen,
-} from 'auth';
+} from './src/auth/screens';
 
 import { HomeScreen } from './src/home/screens';
 
@@ -130,7 +131,21 @@ export const MainTabNavigator = createAppContainer(createBottomTabNavigator(
 			screen: HomeStackNavigator,
 			navigationOptions: {
 				tabBarLabel: 'Feed',
-				tabBarIcon: ({ tintColor }) => <Icon name="th-list" size={20} color={tintColor} />,
+				tabBarIcon: ({ tintColor }) => <Icon name="home" size={20} color={tintColor} />,
+			},
+		},
+		Notifications: {
+			screen: HomeStackNavigator,
+			navigationOptions: {
+				tabBarLabel: 'Notifications',
+				tabBarIcon: ({ tintColor }) => <Icon name="bell" size={20} color={tintColor} />,
+			},
+		},
+		Settings: {
+			screen: HomeStackNavigator,
+			navigationOptions: {
+				tabBarLabel: 'Settings',
+				tabBarIcon: ({ tintColor }) => <Icon name="gear" size={20} color={tintColor} />,
 			},
 		},
 		// Home: {
@@ -233,10 +248,10 @@ export const Routing = createStackNavigator(
 		// 	screen: SplashScreen,
 		// 	navigationOptions: { ...noHeader },
 		// },
-		// Login: {
-		// 	screen: LoginScreen,
-		// 	navigationOptions: { ...noHeader },
-		// },
+		Login: {
+			screen: LoginScreen,
+			navigationOptions: { ...noHeader },
+		},
 		// Welcome: {
 		// 	screen: WelcomeScreen,
 		// 	navigationOptions: { ...noHeader },
@@ -255,3 +270,5 @@ export const Routing = createStackNavigator(
 		},
 	}
 );
+
+export const AppRoutes = createAppContainer(Routing);

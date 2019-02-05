@@ -1,20 +1,49 @@
 import { AsyncStorage } from 'react-native';
 
 import {
-  fetchAccessToken,
-  fetchAuthUser,
-} from 'api';
+  login as loginCall,
+  register as registerCall,
+} from '../api';
 import {
   LOGIN,
   LOGOUT,
-  GET_AUTH_USER,
 } from './auth.type';
 
-export const auth = (code, state) => {
+export const login = (email, password) => {
   return dispatch => {
     dispatch({ type: LOGIN.PENDING });
 
-    return fetchAccessToken(code, state), 2000
+    return loginCall(email, password)
+      .then(data => {
+        console.log('data: ', data);
+        if (data.status === 404) {
+          return dispatch({
+            type: LOGIN.ERROR,
+            payload: 'Usuarios / contraseña inválidos',
+          });
+        }
+
+        return data.json()
+          .then(resp => dispatch({
+            type: LOGIN.SUCCESS,
+            payload: resp.token,
+          }));
+      })
+      .catch(error => {
+        console.log('error: ', error);
+        dispatch({
+          type: LOGIN.ERROR,
+          payload: 'No hay conexión con el servidor',
+        });
+      });
+  };
+};
+
+export const register = (email, password) => {
+  return dispatch => {
+    dispatch({ type: LOGIN.PENDING });
+
+    return registerCall(email, password)
       .then(data => {
         dispatch({
           type: LOGIN.SUCCESS,
@@ -49,24 +78,24 @@ export const signOut = () => {
   };
 };
 
-export const getUser = () => {
-  return (dispatch, getState) => {
-    const accessToken = getState().auth.accessToken;
+// export const getUser = () => {
+//   return (dispatch, getState) => {
+//     const accessToken = getState().auth.accessToken;
 
-    dispatch({ type: GET_AUTH_USER.PENDING });
+//     dispatch({ type: GET_AUTH_USER.PENDING });
 
-    return fetchAuthUser(accessToken)
-      .then(data => {
-        dispatch({
-          type: GET_AUTH_USER.SUCCESS,
-          payload: data,
-        });
-      })
-      .catch(error => {
-        dispatch({
-          type: GET_AUTH_USER.ERROR,
-          payload: error,
-        });
-      });
-  };
-};
+//     return fetchAuthUser(accessToken)
+//       .then(data => {
+//         dispatch({
+//           type: GET_AUTH_USER.SUCCESS,
+//           payload: data,
+//         });
+//       })
+//       .catch(error => {
+//         dispatch({
+//           type: GET_AUTH_USER.ERROR,
+//           payload: error,
+//         });
+//       });
+//   };
+// };

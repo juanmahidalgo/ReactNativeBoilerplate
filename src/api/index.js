@@ -7,6 +7,10 @@ const ACCEPT = {
   JSON: 'application/json',
 };
 
+const CONTENT = {
+  JSON: 'application/json',
+};
+
 const METHOD = {
   GET: 'GET',
   HEAD: 'HEAD',
@@ -19,8 +23,12 @@ const METHOD = {
 export const api = {
   root: API_URL,
   call: async (url, parameters) => {
-    const finalUrl = url.indexOf(api.root) === 0 ? url : `${api.root}${url}`;
+    console.log('parameters: ', parameters);
+    console.log('url: ', url);
+    const finalUrl = `${api.root}${url}`;
+    console.log('finalUrl: ', finalUrl);
     const response = await fetch(finalUrl, parameters);
+    console.log('response: ', response);
 
     return response;
   },
@@ -35,7 +43,8 @@ export const api = {
       method,
       headers: {
         Accept: accept,
-        Authorization: `token ${accessToken}`,
+        // Authorization: `token ${accessToken}`,
+        'Content-Type': accept,
         'Cache-Control': 'no-cache',
       },
     };
@@ -73,7 +82,7 @@ export const api = {
   getJson: async (url, accessToken) => {
     const response = await api.call(url, api.parameters(accessToken));
 
-    return response.json();
+    return response;
   },
   head: async (url, accessToken) => {
     const response = await api.call(
@@ -102,3 +111,7 @@ export const api = {
 };
 
 export const authUser = accessToken => api.getJson('/auth', accessToken);
+
+export const login = (email, password) => api.post('/login', '', { email, password });
+
+export const register = (email, password) => api.post('/register', '', { email, password });

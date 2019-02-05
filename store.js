@@ -8,7 +8,7 @@ import Reactotron from 'reactotron-react-native'; // eslint-disable-line import/
 import createLogger from 'redux-logger';
 import reduxThunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import 'config/reactotron';
+import './src/config/reactotron';
 import { rootReducer } from './reducer';
 
 const encryptor = createEncryptor({
@@ -25,11 +25,11 @@ const getMiddleware = () => {
   const middlewares = [reduxThunk];
 
   console.log('__DEV__: ', __DEV__);
-  if (__DEV__) {
-    if (process.env.LOGGER_ENABLED) {
-      middlewares.push(createLogger());
-    }
-  }
+  // if (__DEV__) {
+  //   if (process.env.LOGGER_ENABLED) {
+  //     middlewares.push(createLogger());
+  //   }
+  // }
 
   return applyMiddleware(...middlewares);
 };
@@ -43,9 +43,10 @@ if (__DEV__ && process.env.TRON_ENABLED) {
   );
 } else {
   store = createStore(
-    persistReducer(persistConfig, rootReducer),
+    rootReducer,
     composeWithDevTools(getMiddleware())
   );
+  console.log('store: ', store);
 }
 
 export const configureStore = store;
